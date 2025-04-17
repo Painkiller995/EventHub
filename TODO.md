@@ -8,3 +8,5 @@
 - [ ] Add pagination to event listings
 - [ ] Deploy to cloud platform (e.g. Heroku)
 - [ ] Implement hamburger menu for mobile navigation
+- [ ] Implement forgot your password
+- [ ] Implement Terms of Service and Privacy Policy pages
