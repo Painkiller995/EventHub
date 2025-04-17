@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Public Events - EventHub
+{% endblock title %}
+
+{% block content %}
+  <section class="py-5">
+    <div class="container">
+      <!-- Header -->
+      <div class="row align-items-center mb-4 fade-in">
+        <div class="col-md-6">
+          <h1 class="fw-bold">Public Events</h1>
+          <p class="text-muted">
+            Browse all public events. You can use the filters below to narrow down
+            your search.
+          </p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="card border-0 shadow-sm rounded-3 mb-4 fade-in">
+        <div class="card-body p-4">
+          <form class="row g-3 d-flex align-items-center"
+                method="get"
+                action="{{ url_for('event.public_events') }}">
+
+            <!-- Search Field -->
+            <div class="col-md-4">
+              <label for="searchPublicEvents" class="form-label text-primary">Search</label>
+              <div class="input-group">
+                <span class="input-group-text text-muted"><i class="fas fa-search"></i></span>
+                <input type="text"
+                       class="form-control placeholder-muted"
+                       id="searchPublicEvents"
+                       name="search"
+                       value="{{ search_query }}"
+                       placeholder="Search public events..." />
+              </div>
+            </div>
+
+            <!-- Date Filter -->
+            <div class="col-md-3">
+              <label for="dateFilter" class="form-label text-primary">Date</label>
+              <select class="form-select" id="dateFilter" name="date">
+                <option value="" {% if not date_filter %}selected{% endif %}>Any Date</option>
+                <option value="today" {% if date_filter == "today" %}selected{% endif %}>Today</option>
+                <option value="tomorrow" {% if date_filter == "tomorrow" %}selected{% endif %}>Tomorrow</option>
+                <option value="week" {% if date_filter == "week" %}selected{% endif %}>This Week</option>
+                <option value="month" {% if date_filter == "month" %}selected{% endif %}>This Month</option>
+              </select>
+            </div>
+            <div class="col-md-2 ms-auto">
+              <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Public Events List -->
+      <div class="row g-4">
+        {% for event in public_events_list %}
+          <div class="col-md-6 col-lg-4 fade-in">
+            <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+              <img src="{{ event.image_url }}" width="100%" height="400"  class="card-img-top" alt="Event Image" />
+              <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="badge bg-danger">Public</span>
+                  <small class="text-muted">
+                    <i class="fas fa-calendar-alt me-1"></i> {{ event.date.strftime("%b %d, %Y") }}
+                  </small>
+                </div>
+                <h5 class="card-title mb-1 text-primary">{{ event.name }}</h5>
+                <p class="text-muted mb-2">{{ event.location }}</p>
+                <p class="card-text text-primary">
+                  {{ event.description[:150] }}
+                  {% if event.description|length > 150
+                    %}
+                    ...
+                  {% endif %}
+                </p>
+              </div>
+              <div class="card-footer border-0 p-4">
+                <div class="d-grid">
+                  <a href="{{ url_for('event.event_details', event_id=event.id) }}" class="btn btn-outline-primary">
+                    View Details
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="col-12">
+            <p class="text-center">No public events found.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

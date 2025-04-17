@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Event Details - EventHub
+{% endblock title %}
+
+{% block content %}
+  <section class="py-5">
+    <div class="container">
+      <!-- Event Header -->
+      <div class="row mb-4 fade-in">
+        <div class="col-lg-8">
+          <h1 class="display-5 fw-bold">{{ event_info.name }}</h1>
+          <h5 class="display-10 fw-bold">
+            {% if event_info.is_public %}
+              <span class="badge bg-danger"><i class="fas fa-globe me-1"></i> Public Event</span>
+            {% else %}
+              <span class="badge bg-success"><i class="fas fa-lock me-1"></i> Private Event</span>
+            {% endif %}
+          </h5>
+          <div class="d-flex align-items-center mb-4">
+            <div>
+              <h6 class="mb-0 text-primary">Organizer: {{ organizer_info.name }}</h6>
+              <p class="text-muted mb-0">{{ organizer_info.email }}</p>
+            </div>
+          </div>
+          <!-- Attendees Badge Section -->
+          <div class="mb-3 mb-lg-0 py-2">
+            {% if attendees_count > 0 %}
+              <span class="badge bg-success">Attending: {{ attendees_count }}</span>
+            {% else %}
+              <span class="badge bg-secondary">No Attendees Yet</span>
+            {% endif %}
+          </div>
+
+          <!-- Attendees Badge Section -->
+          <div class="d-flex align-items-center text-muted mb-2">
+            <i class="fas fa-calendar-alt me-2"></i>
+            <span class="me-3">{{ event_info.date.strftime("%b %d, %Y") or "N/A" }}</span>
+            <i class="fas fa-map-marker-alt me-2"></i>
+            <span>{{ event_info.location }}</span>
+          </div>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <div class="d-flex flex-column flex-lg-row justify-content-lg-end gap-3">
+            <div class="d-flex gap-2">
+              <form action="{{ url_for('event.delete_event', event_id=event_info.id) }}" method="post">
+                {{ form.hidden_tag() }}
+                <input type="hidden" name="id" value="{{ event_info.id }}" />
+                <button type="submit"
+                        class="btn btn-outline-danger px-3 py-2"
+                        onclick="return confirm('Are you sure you want to delete this event?');">
+                  Delete Event
+                </button>
+              </form>
+              <a class="btn btn-outline-primary px-3 py-2"
+                 href="{{ url_for('event.event_details', event_id=event_info.id) }}">Preview</a>
+              <a class="btn btn-outline-primary px-3 py-2" id="copyLinkButton">Copy link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Event Details -->
+        <div class="fade-in">
+          <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+            <img src="{{ event_info.image_url }}"
+                 class="card-img-top event-banner-img"
+                 alt="Event Banner"
+                 height="500"
+                 width="100%" />
+
+            <div class="card-body p-4">
+              <h4 class="card-title mb-4">Event Overview</h4>
+              <p class="card-text">{{ event_info.description }}</p>
+
+              <div class="my-4">
+                <div class="separator" style="border-bottom: 2px solid #ccc"></div>
+              </div>
+
+              <!-- Attendees Section -->
+              <div class="row g-4">
+                <div class="col-12">
+                  <h3 class="mb-4 text-primary">Event Attendees</h3>
+                </div>
+
+                {% for attendee_info in attendees_contact_info %}
+                  <div class="col-md-6 col-lg-4 fade-in">
+                    <div class="d-flex align-items-center mb-3 p-3 border rounded-3 shadow-sm">
+                      <div class="me-3">
+                        <div class="circle-avatar bg-primary text-white d-flex justify-content-center align-items-center"
+                             style="width: 50px;
+                                    height: 50px;
+                                    border-radius: 50%">
+                          <span class="fs-4">{{ attendee_info.name[0] }}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="mb-1 text-primary">{{ attendee_info.name }}</h5>
+                        <p class="text-muted mb-0">{{ attendee_info.email }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  <div class="col-12 text-primary">
+                    <p>No attendees available.</p>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <div class="my-4">
+                <div class="separator" style="border-bottom: 2px solid #ccc"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+      const base_url = window.location.origin;
+      const event_url =
+          "{{ url_for('event.event_details', event_id=event_info.id) }}";
+      const full_event_url = base_url + event_url;
+
+      // Get the copy button
+      const copyButton = document.getElementById("copyLinkButton");
+
+      copyButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          const tempInput = document.createElement("input");
+          document.body.appendChild(tempInput);
+          tempInput.value = full_event_url;
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+
+          alert("Link copied to clipboard!");
+      });
+  </script>
+
+{% endblock content %}

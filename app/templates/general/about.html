@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}
+  EventHub - About
+{% endblock title %}
+
+{% block content %}
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <div class="card shadow-sm mb-5">
+          <div class="card-body p-5">
+            <h1 class="text-center text-primary mb-4">About EventHub</h1>
+            <div class="text-center mb-5">
+              <img src="{{ url_for('static', filename='img/event-illustration.svg') }}"
+                   alt="EventHub"
+                   class="img-fluid"
+                   style="max-width: 200px" />
+            </div>
+
+            <h2 class="section-title text-primary">Our Mission</h2>
+            <p class="lead mb-4 text-muted">
+              EventHub is dedicated to connecting people through meaningful events
+              and experiences. We believe that bringing people together creates
+              stronger communities and enriches lives.
+            </p>
+
+            <div class="row mb-5">
+              <div class="col-md-4 text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-people-fill text-primary"></i>
+                </div>
+                <h4 class="text-primary">Connect</h4>
+                <p class="text-muted">Bringing people together with shared interests</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-calendar-event text-primary"></i>
+                </div>
+                <h4 class="text-primary">Create</h4>
+                <p class="text-muted">Empowering organizers to host amazing events</p>
+              </div>
+              <div class="col-md-4 text-center">
+                <div class="feature-icon mx-auto">
+                  <i class="bi bi-globe text-primary"></i>
+                </div>
+                <h4 class="text-primary">Community</h4>
+                <p class="text-muted">Building stronger local communities</p>
+              </div>
+            </div>
+
+            <h2 class="section-title text-primary">Our Story</h2>
+            <p class="text-muted">
+              EventHub was created in 2025 as a student project with a simple
+              goal: make it easier for people to discover and join local events.
+            </p>
+            <p class="text-muted">
+              Our platform provides a simple yet powerful way for event organizers
+              to create and manage events, while giving attendees an easy way to
+              discover experiences that match their interests. Whether it's a
+              small meetup, a workshop, or a large conference, EventHub provides
+              all the tools needed to make your event successful.
+            </p>
+
+            <h2 class="section-title text-primary mt-5">How It Works</h2>
+            <div class="row g-4 mb-5">
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                  <div class="card-body">
+                    <h4 class="card-title text-primary">
+                      <i class="bi bi-person-plus me-2"></i>For Event Organizers
+                    </h4>
+                    <ol class="mt-3 text-muted">
+                      <li>Create a free account</li>
+                      <li>Set up your event with all details</li>
+                      <li>Publish your event to our platform</li>
+                      <li>Manage registrations and attendees</li>
+                      <li>Host a successful event!</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm">
+                  <div class="card-body">
+                    <h4 class="card-title text-primary">
+                      <i class="bi bi-ticket-perforated me-2"></i>For Attendees
+                    </h4>
+                    <ol class="mt-3 text-muted">
+                      <li>Browse events or search by interest</li>
+                      <li>Create a free account</li>
+                      <li>Register for events that interest you</li>
+                      <li>Receive email confirmations</li>
+                      <li>Attend and enjoy the event!</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-title text-primary">Our Team</h2>
+            <div class="row g-4 mb-5">
+              <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center">
+                  <div class="card-body">
+                    <div class="rounded-circle bg-light mx-auto mb-3 d-flex align-items-center justify-content-center"
+                         style="width: 100px;
+                                height: 100px">
+                      <i class="bi bi-person-fill text-primary" style="font-size: 3rem"></i>
+                    </div>
+                    <h5 class="card-title">Fahd Daher</h5>
+                    <p class="text-muted">Developer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="section-title text-primary">Contact Us</h2>
+            <div class="row mb-4">
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-envelope-fill text-primary me-3 mt-1" style="font-size: 1.5rem"></i>
+                  <div class="text-muted">
+                    <h5>Email</h5>
+                    <p>fahddaher995@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-geo-alt-fill text-primary me-3 mt-1" style="font-size: 1.5rem"></i>
+                  <div class="text-muted">
+                    <h5>Address</h5>
+                    <p>
+                      4103
+                      <br />
+                      Jørpeland, Norway
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Events - EventHub
+{% endblock title %}
+
+{% block content %}
+  <section class="py-5">
+    <div class="container">
+      <!-- Header -->
+      <div class="row align-items-center mb-4 fade-in">
+        <div class="col-md-6">
+          <h1 class="fw-bold">My Events</h1>
+          <p class="text-muted">
+            Manage and view your events. Use the filters to find specific events
+            quickly.
+          </p>
+        </div>
+
+        <div class="col-md-6 text-md-end">
+          <a href="{{ url_for('event.create_event') }}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Create New Event
+          </a>
+        </div>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="container mt-3">
+            {% for category, message in messages %}
+              <div class="alert
+                          {% if category == 'error' %}
+                            alert-danger
+                          {% elif category == 'success' %}
+                            alert-success
+                          {% elif category == 'warning' %}
+                            alert-warning
+                          {% else %}
+                            alert-info
+                          {% endif %}"
+                   data-dismiss="alert"
+                   role="alert">{{ message }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Events List -->
+      <div class="row g-4">
+        <div class="row g-4">
+          {% for event in my_events_list %}
+
+            <div class="col-md-6 col-lg-4 fade-in">
+              <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+                <img src="{{ event.image_url }}" width="100%" height="400"  class="card-img-top" alt="Event Image" />
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    {% if event.is_public %}
+                      <span class="badge bg-danger">Public</span>
+                    {% else %}
+                      <span class="badge bg-success">Private</span>
+                    {% endif %}
+                    <small class="text-muted">
+                      <i class="fas fa-users me-1"></i> {{ event.date.strftime('%b
+                       %d, %Y') or "N/A" }}
+                    </small>
+                  </div>
+                  <h5 class="card-title mb-1 text-primary">Event: {{ event.name }}</h5>
+                  <p class="text-muted mb-3">{{ event.location }}</p>
+                  <p class="card-text text-primary">
+                    {{ event.description[:150] }}
+                    {% if event.description|length >
+                      150 %}
+                      ...
+                    {% endif %}
+                  </p>
+                </div>
+                <div class="card-footer border-0 p-4">
+                  <div class="d-grid">
+                    <a href="{{ url_for('event.my_event_details', event_id=event.id) }}" class="btn btn-outline-primary">
+                      View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% else %}
+            <div class="col-12">
+              <p class="text-center">No events available.</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                alert.style.transition = "opacity 1s";
+                alert.style.opacity = 0;
+                setTimeout(function() {
+                    alert.remove();
+                }, 1000);
+            });
+        }, 3000);
+    </script>
+
+  </section>
+{% endblock content %}

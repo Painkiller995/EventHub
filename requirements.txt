@@ -1,0 +1,20 @@
+Flask==3.1.0                        # Web framework
+
+# Flask extensions
+Flask-Login==0.6.3                  # User authentication
+Flask-Mail==0.10.0                  # Email sending
+Flask-Bcrypt==1.0.1                 # Password hashing
+Flask-WTF==1.2.2                    # Forms and CSRF protection
+
+email_validator==2.2.0              # Email validation
+
+# Database and ORM
+Flask-SQLAlchemy==3.1.1             # ORM for database interactions
+mysql-connector-python==9.2.0       # MySQL database connector
+
+# Loading environment variables
+python-dotenv==1.1.0                # Load environment variables from .env file
+
+# Code quality and linting
+ruff==0.11.5                        # Linter and code quality tool
+djlint==1.36.4                      # Django template linter

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Home - EventHub
+{% endblock title %}
+
+{% block content %}
+  <div class="hero-section position-relative overflow-hidden p-3 p-md-5 m-md-3 bg-primary text-white">
+    <div class="container position-relative">
+      <div class="row">
+        <div class="col-lg-7">
+          <h1 class="display-4">Discover & Join Amazing Events</h1>
+          <p class="lead mb-4">
+            Your one-stop platform for creating, managing, and attending local
+            events
+          </p>
+          <div class="d-flex gap-3 mt-5">
+            <a href="{{ url_for('event.public_events') }}" class="btn btn-light btn-lg">
+              <i class="bi bi-ticket-perforated me-2"></i> Public events
+            </a>
+            <a href="{{ url_for('event.my_events') }}" class="btn btn-outline-light btn-lg">
+              <i class="bi bi-ticket-perforated me-2"></i>My Events
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block">
+          <div class="text-center">
+            <img src="{{ url_for('static', filename='img/event-illustration.svg') }}"
+                 alt="Events Illustration"
+                 width="300" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <div class="row mb-5">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center p-4 shadow-sm">
+          <div class="feature-icon mb-3">
+            <i class="bi bi-calendar-event text-primary" style="font-size: 2.5rem"></i>
+          </div>
+          <h3 class="text-primary">Create Events</h3>
+          <p class="text-muted">
+            Easily create and manage your own events with detailed descriptions,
+            dates, and locations.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center p-4 shadow-sm">
+          <div class="feature-icon mb-3">
+            <i class="bi bi-people text-primary" style="font-size: 2.5rem"></i>
+          </div>
+          <h3 class="text-primary">Join Events</h3>
+          <p class="text-muted">
+            Discover and register for events that interest you with just a few
+            clicks.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 text-center p-4 shadow-sm">
+          <div class="feature-icon mb-3">
+            <i class="bi bi-bell text-primary" style="font-size: 2.5rem"></i>
+          </div>
+          <h3 class="text-primary">Stay Updated</h3>
+          <p class="text-muted">
+            Get notifications and email confirmations for events you're registered
+            for.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7">
+        <h2 class="section-title">What is EventHub?</h2>
+        <p>
+          EventHub is a comprehensive event management platform that allows users
+          to create, manage, and join events. Whether you're organizing a small
+          meetup, a workshop, or a large conference, EventHub provides all the
+          tools you need to make your event successful.
+        </p>
+
+        <div class="card mt-4 mb-4 shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title text-primary mb-4">Key Features</h3>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-check-circle-fill text-success me-3 mt-1" style="font-size: 1.25rem"></i>
+                  <div>
+                    <h5 class="text-primary">User Authentication</h5>
+                    <p class="text-muted">Secure registration and login system for all users.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-check-circle-fill text-success me-3 mt-1" style="font-size: 1.25rem"></i>
+                  <div>
+                    <h5 class="text-primary">Event Management</h5>
+                    <p class="text-muted">Create, edit, and delete your events with ease.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-check-circle-fill text-success me-3 mt-1" style="font-size: 1.25rem"></i>
+                  <div>
+                    <h5 class="text-primary">Event Registration</h5>
+                    <p class="text-muted">Register for events and receive email confirmations.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex align-items-start">
+                  <i class="bi bi-check-circle-fill text-success me-3 mt-1" style="font-size: 1.25rem"></i>
+                  <div>
+                    <h5 class="text-primary">Search & Filter</h5>
+                    <p class="text-muted">Find events that interest you with powerful search tools.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="section-title">How to Get Started</h3>
+        <p>Getting started with EventHub is easy:</p>
+        <ol>
+          <li>Create an account or log in</li>
+          <li>Browse upcoming events on the home page</li>
+          <li>Register for events that interest you</li>
+          <li>Create your own events to share with others</li>
+        </ol>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h3 class="mb-4 text-primary">Why Choose EventHub?</h3>
+            <ul class="list-unstyled text-muted">
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-arrow-right-circle-fill text-primary me-3" style="font-size: 1.25rem"></i>
+                <span>User-friendly interface for event creation and management</span>
+              </li>
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-arrow-right-circle-fill text-primary me-3" style="font-size: 1.25rem"></i>
+                <span>Secure registration and authentication system</span>
+              </li>
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-arrow-right-circle-fill text-primary me-3" style="font-size: 1.25rem"></i>
+                <span>Email notifications for event updates</span>
+              </li>
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-arrow-right-circle-fill text-primary me-3" style="font-size: 1.25rem"></i>
+                <span>Powerful search and filter capabilities</span>
+              </li>
+              <li class="mb-3 d-flex align-items-center">
+                <i class="bi bi-arrow-right-circle-fill text-primary me-3" style="font-size: 1.25rem"></i>
+                <span>Responsive design for desktop and mobile devices</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="mb-4 text-primary">Quick Links</h3>
+            <ul class="list-group list-group-flush">
+              {% if current_user.is_authenticated %}
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="bi bi-calendar-plus me-3 text-primary"></i>
+                  <a href="{{ url_for('event.create_event') }}">Create New Event</a>
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="bi bi-calendar-check me-3 text-primary"></i>
+                  <a href="{{ url_for('event.my_events') }}">My Events</a>
+                </li>
+
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="bi bi-calendar-check me-3 text-primary"></i>
+                  <a href="{{ url_for('event.public_events') }}">Public Events</a>
+                </li>
+
+              {% else %}
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="bi bi-box-arrow-in-right me-3 text-primary"></i>
+                  <a href="{{ url_for('auth.login') }}">Login</a>
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="bi bi-person-plus me-3 text-primary"></i>
+                  <a href="{{ url_for('auth.signup') }}">Signup</a>
+                </li>
+              {% endif %}
+              <li class="list-group-item d-flex align-items-center">
+                <i class="bi bi-info-circle me-3 text-primary"></i>
+                <a href="{{ url_for('main.about') }}">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

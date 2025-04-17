@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Dashboard - EventHub
+{% endblock title %}
+
+{% block content %}
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 mb-4">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="User" />
+                <div>
+                  <h6 class="mb-0">Welcome back</h6>
+                  <p class="text-muted mb-0">User Name</p>
+                </div>
+              </div>
+              <hr />
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#"><i class="fas fa-home me-2"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fas fa-user me-2"></i> Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fas fa-cog me-2"></i> Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="fas fa-bell me-2"></i> Notifications</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Dashboard</h5>
+              <p class="card-text">Welcome to your dashboard! You have successfully logged in.</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="card-title mb-0">Projects</h6>
+                    <span class="badge bg-primary rounded-pill">5</span>
+                  </div>
+                  <p class="card-text text-muted">Your active projects</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                  <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="card-title mb-0">Tasks</h6>
+                    <span class="badge bg-danger rounded-pill">12</span>
+                  </div>
+                  <p class="card-text text-muted">Your pending tasks</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                  <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="card-title mb-0">Messages</h6>
+                    <span class="badge bg-danger rounded-pill">3</span>
+                  </div>
+                  <p class="card-text text-muted">Unread messages</p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                  <a href="#" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title mb-4">Recent Activity</h5>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item px-0">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">Project created</h6>
+                    <small class="text-muted">3 days ago</small>
+                  </div>
+                  <p class="mb-1 text-muted">You created a new project "Website Redesign"</p>
+                </div>
+                <div class="list-group-item px-0">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">Task completed</h6>
+                    <small class="text-muted">1 week ago</small>
+                  </div>
+                  <p class="mb-1 text-muted">You completed the task "Update user documentation"</p>
+                </div>
+                <div class="list-group-item px-0">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">New message</h6>
+                    <small class="text-muted">2 weeks ago</small>
+                  </div>
+                  <p class="mb-1 text-muted">You received a message from John Doe</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

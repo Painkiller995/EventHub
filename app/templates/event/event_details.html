@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Event Details - EventHub
+{% endblock title %}
+
+{% block content %}
+  <section class="py-5">
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Event Header -->
+          <div class="row mb-4 fade-in">
+            <div class="col-lg-8">
+              <h1 class="display-5 fw-bold">{{ event_info.name }}</h1>
+              <h5 class="display-10 fw-bold">
+                {% if event_info.is_public %}
+                  <span class="badge bg-danger"><i class="fas fa-globe me-1"></i> Public Event</span>
+                {% else %}
+                  <span class="badge bg-success"><i class="fas fa-lock me-1"></i> Private Event</span>
+                {% endif %}
+              </h5>
+              <div class="d-flex align-items-center mb-4">
+                <div>
+                  <h6 class="mb-0 text-primary">Organizer: {{ organizer_info.name }}</h6>
+                  <p class="text-muted mb-0">{{ organizer_info.email }}</p>
+                </div>
+              </div>
+              <!-- Location and Date -->
+              <div class="d-flex align-items-center text-muted mb-2">
+                <i class="fas fa-calendar-alt me-2"></i>
+                <span class="me-3">{{ event_info.date.strftime("%b %d, %Y") or "N/A" }}</span>
+                <i class="fas fa-map-marker-alt me-2"></i>
+                <span>{{ event_info.location }}</span>
+              </div>
+            </div>
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div class="container mt-3">
+                {% for category, message in messages %}
+                  <div class="alert
+                              {% if category == 'error' %}
+                                alert-danger
+                              {% elif category == 'success' %}
+                                alert-success
+                              {% elif category == 'warning' %}
+                                alert-warning
+                              {% else %}
+                                alert-info
+                              {% endif %}"
+                       data-dismiss="alert"
+                       role="alert">{{ message }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+
+          <div class="row">
+            <!-- Event Details -->
+            <div class="fade-in">
+              <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                <img src="{{ event_info.image_url }}"
+                     class="card-img-top event-banner-img"
+                     alt="Event Banner"
+                     height="500"
+                     width="100%" />
+
+                <div class="card-body p-4">
+                  <h4 class="card-title mb-4">Event Overview</h4>
+                  <p class="card-text">{{ event_info.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Action Sidebar -->
+        <div class="col-lg-4">
+
+          <div class="card shadow-lg rounded border-0">
+            <div class="card-body">
+
+              <!-- Action Buttons Section -->
+              <div class="col-lg-12 text-lg-end mb-4">
+                <div class="d-flex flex-column flex-lg-row gap-3">
+                  <div class="d-flex gap-2">
+                    <a class="btn btn-outline-secondary px-3 py-2 rounded-3 hover-shadow" id="copyLinkButton">
+                      <i class="bi bi-clipboard"></i> Copy link
+                    </a>
+                    <a class="btn btn-outline-primary px-3 py-2 rounded-3 hover-shadow"
+                       href="mailto:?subject={{ event_info.title }}&body=Check out this event: {{ url_for('event.event_details', event_id=event_info.id, _external=True) }}">
+                      <i class="bi bi-share"></i> Share
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Attendees Badge Section -->
+              <div class="mb-3 mb-lg-0 pb-4">
+                {% if attendees_count > 0 %}
+                  <span class="badge bg-success">Attending: {{ attendees_count }}</span>
+                {% else %}
+                  <span class="badge bg-secondary">No Attendees Yet</span>
+                {% endif %}
+              </div>
+
+              <!-- Join Event Form -->
+              <form method="post" action="{{ url_for('event.register_for_event', event_id=event_info.id) }}">
+                {{ registration_form.hidden_tag() }}
+                <input type="hidden" name="event_id" value="{{ event_info.id }}" />
+                <button type="submit" class="btn btn-primary w-100 mb-3 rounded-3 hover-shadow">
+                  Register for Event
+                </button>
+              </form>
+
+              <!-- Un-Join Event Form -->
+              <form method="post" action="{{ url_for('event.cancel_registration_for_event', event_id=event_info.id) }}">
+                {{ registration_form.hidden_tag() }}
+                <input type="hidden" name="event_id" value="{{ event_info.id }}" />
+                <button type="submit" class="btn btn-danger w-100 rounded-3 hover-shadow">
+                  Unregister from Event
+                </button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        const base_url = window.location.origin;
+        const event_url =
+            "{{ url_for('event.event_details', event_id=event_info.id) }}";
+        const full_event_url = base_url + event_url;
+
+        // Get the copy button
+        const copyButton = document.getElementById("copyLinkButton");
+
+        copyButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            const tempInput = document.createElement("input");
+            document.body.appendChild(tempInput);
+            tempInput.value = full_event_url;
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            alert("Link copied to clipboard!");
+        });
+    </script>
+    <script>
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                alert.style.transition = "opacity 1s";
+                alert.style.opacity = 0;
+                setTimeout(function() {
+                    alert.remove();
+                }, 1000);
+            });
+        }, 3000);
+    </script>
+
+  </section>
+
+{% endblock content %}

@@ -1,0 +1,55 @@
+.idea
+.ipynb_checkpoints
+.mypy_cache
+.ruff_cache
+__pycache__
+.pytest_cache
+htmlcov
+dist
+site
+.coverage
+coverage.xml
+.netlify
+test.db
+log.txt
+Pipfile.lock
+env3.*
+env
+docs_build
+site_build
+venv
+docs.zip
+archive.zip
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+
+# vim temporary files
+*~
+.*.sw?
+.cache
+
+# macOS
+.DS_Store
+
+.env 
+.envs/
+.envs/**
+*.fastapi
+
+# Subversion
+.svn/**
+
+
+app/static/uploads/**
+
+.pytest_cache/
+.ipython/
+
+# ignore all .env files
+.env
+.envs/*
+!.envs/.local/
+**/.env.local
+**/.env.production

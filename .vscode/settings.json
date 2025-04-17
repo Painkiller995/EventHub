@@ -1,0 +1,46 @@
+{
+    "files.associations": {
+        "*.html": "jinja-html",
+        "*.jinja2": "django-html"
+    },
+    "emmet.includeLanguages": {
+        "jinja2": "html",
+        "jinja-html": "html",
+        "django-html": "html"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.formatOnSave": true,
+        "editor.detectIndentation": false,
+        "editor.linkedEditing": true,
+        "editor.tabSize": 2
+    },
+    "[jinja-html]": {
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.formatOnSave": true,
+        "editor.detectIndentation": false,
+        "editor.linkedEditing": true,
+        "editor.tabSize": 2
+    },
+    "[django-html]": {
+        "editor.defaultFormatter": "monosans.djlint",
+        "editor.formatOnSave": true,
+        "editor.detectIndentation": false,
+        "editor.linkedEditing": true,
+        "editor.tabSize": 2
+    },
+    "djlint.enableLinting": false,
+    "djlint.closeVoidTags": true,
+    "djlint.formatAttributeTemplateTags": true,
+    "djlint.formatCss": true,
+    "djlint.formatJs": true,
+    "djlint.lineBreakAfterMultilineTag": false,
+    "djlint.maxBlankLines": 2,
+    "djlint.maxLineLength": 100,
+    "djlint.maxAttributeLength": 100,
+    "cSpell.words": [
+        "endfor",
+        "endwith",
+        "ilike"
+    ]
+}
