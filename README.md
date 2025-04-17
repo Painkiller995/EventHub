@@ -39,6 +39,21 @@ Make sure you have the following tools installed on your machine:
 
 ---
 
+## 📥 Clone the Repository
+
+Start by cloning the project from GitHub:
+
+```bash
+git clone https://github.com/Painkiller995/EventHub.git
+cd EventHub
+code .
+```
+
+> 💡 The `code .` command opens the project in Visual Studio Code.
+Make sure you have the `code` command available in your terminal (enabled during VS Code installation).
+
+---
+
 ## ⚙️ Step-by-Step Setup
 
 ### 0. 🛠️ Create Your `.env.local` File
