@@ -25,6 +25,25 @@ def create_new_event(user_id, form, image_url):
     return new_event
 
 
+def update_event(event_id, form, image_url):
+    """
+    Update an existing event in the database.
+    """
+    event = Event.query.get(event_id)
+
+    if event:
+        event.name = form.name.data
+        event.description = form.description.data
+        event.date = form.date.data
+        event.location = form.location.data
+        event.is_public = form.is_public.data
+        event.image_url = image_url if image_url else event.image_url
+
+        db.session.commit()
+
+    return event
+
+
 def get_user_events(user_id):
     """
     Retrieve all events created by a user.

@@ -10,3 +10,4 @@
 - [ ] Implement hamburger menu for mobile navigation
 - [ ] Implement forgot your password
 - [ ] Implement Terms of Service and Privacy Policy pages
+- [ ] Delete uploaded images on event deletion

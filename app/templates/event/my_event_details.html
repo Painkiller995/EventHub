@@ -42,20 +42,25 @@
           </div>
         </div>
         <div class="col-lg-4 text-lg-end">
-          <div class="d-flex flex-column flex-lg-row justify-content-lg-end gap-3">
+          <div class="d-flex flex-column flex-lg-row justify-content-lg-end gap-3 mb-4">
             <div class="d-flex gap-2">
+              <!-- Edit, Delete, Preview, Copy Link Buttons -->
+              <a type="submit"
+                 class="btn btn-outline-warning px-3 py-2"
+                 href="{{ url_for('event.edit_event', event_id=event_info.id) }}">Edit</a>
               <form action="{{ url_for('event.delete_event', event_id=event_info.id) }}" method="post">
                 {{ form.hidden_tag() }}
                 <input type="hidden" name="id" value="{{ event_info.id }}" />
                 <button type="submit"
                         class="btn btn-outline-danger px-3 py-2"
                         onclick="return confirm('Are you sure you want to delete this event?');">
-                  Delete Event
+                  Delete
                 </button>
               </form>
               <a class="btn btn-outline-primary px-3 py-2"
                  href="{{ url_for('event.event_details', event_id=event_info.id) }}">Preview</a>
               <a class="btn btn-outline-primary px-3 py-2" id="copyLinkButton">Copy link</a>
+              <!-- Edit, Delete, Preview, Copy Link Buttons -->
             </div>
           </div>
         </div>

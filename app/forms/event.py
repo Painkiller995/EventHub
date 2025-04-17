@@ -11,10 +11,10 @@ class EventForm(FlaskForm):
     location = StringField("Location", validators=[DataRequired(), Length(min=2, max=100)])
     is_public = BooleanField("Make Event Public", default=False)
     image = FileField("Event Image (Optional)", validators=[FileAllowed(["jpg", "png"], "Images only!")])
-    submit = SubmitField("Create Event")
+    submit = SubmitField("Submit")
 
 
-class EventDeleteForm(FlaskForm):
+class EventIdForm(FlaskForm):
     id = StringField("Event ID", validators=[DataRequired()])
 
 

@@ -39,8 +39,10 @@
     "djlint.maxLineLength": 100,
     "djlint.maxAttributeLength": 100,
     "cSpell.words": [
+        "enctype",
         "endfor",
         "endwith",
-        "ilike"
+        "ilike",
+        "onclick"
     ]
 }

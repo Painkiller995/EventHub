@@ -14,9 +14,10 @@ from app.crud import (
     is_current_user_event,
     number_of_attendees,
     register_user_for_event,
+    update_event,
 )
 from app.file_utils import save_file
-from app.forms.event import EventDeleteForm, EventForm, RegistrationForm
+from app.forms.event import EventForm, EventIdForm, RegistrationForm
 
 event_routes = Blueprint("event", __name__)
 
@@ -52,6 +53,36 @@ def create_event():
     return render_template("./event/create_event.html", form=form)
 
 
+@event_routes.route("/event/edit_event/<int:event_id>", methods=["GET", "POST"])
+@login_required
+def edit_event(event_id):
+    """
+    Handle event editing.
+    """
+
+    if not is_current_user_event(current_user.id, event_id):
+        flash("Invalid event ID or you don't have permission to delete this event.", "danger")
+        return redirect(url_for("event.my_events"))
+
+    event_info = get_event_by_id(event_id)
+    if not event_info:
+        flash("Event not found.", "danger")
+        return redirect(url_for("event.my_events"))
+
+    if request.method == "POST":
+        form = EventForm()
+        if form.validate_on_submit():
+            image_path = save_file(form.image.data) if form.image.data else None
+            update_event(event_id, form, image_path)
+            flash("Event updated successfully!", "success")
+            return redirect(url_for("event.my_events"))
+
+    else:
+        form = EventForm(obj=event_info)
+
+    return render_template("./event/edit_event.html", form=form, event_info=event_info)
+
+
 @event_routes.route("/event/my_events", methods=["GET"])
 @login_required
 def my_events():
@@ -78,7 +109,7 @@ def my_event_details(event_id):
     attendees_contact_info = get_attendees_contact_info(event_id)
     organizer_info = get_event_organizer_info(event_id)
 
-    form = EventDeleteForm()
+    form = EventIdForm()
 
     return render_template(
         "./event/my_event_details.html",
@@ -97,7 +128,7 @@ def delete_event(event_id):
     Handle event deletion.
     """
 
-    form = EventDeleteForm()
+    form = EventIdForm()
 
     if not form.validate_on_submit():
         flash("Form validation failed. Please check your inputs.", "danger")
